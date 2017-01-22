@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block body %}
+<html>
+{% if threads==[] %}
+<p>There are no current threads to display</p>
+{%else%}
+<div class="thread">
+{%for thread in threads %}
+<a href={{url_for('threadpage', thread_id=thread.id)}}>
+<p> {{thread.title}} </p>
+<p> {{thread.text}} </p> <hr>
+{%endfor%}
+</div>
+{% endif %}
+
+
+
+</html>
+{% endblock %}

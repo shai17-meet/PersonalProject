@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block body %}
+<html>
+<form action="{{url_for('newUser')}}" method='post'>
+Username:<br>
+<input type="text" name="username"><br>
+Email Address:<br>
+<input type="text" name="email"><br>
+Password:<br>
+<input type="password" name="password"><br>
+
+<input type="submit" value="Sign Up">
+</form>
+</html>
+{% endblock %}

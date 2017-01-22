@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<html>
+<form action="{{url_for('newThread')}}" method='post'>
+Title:<br>
+<input type="text" name="title"><br>
+Write your thread here:<br>
+<input type="text" name="thread_content"><br>
+<input type="submit" value="Post">
+</form>
+
+</html>
+{% endblock %}
