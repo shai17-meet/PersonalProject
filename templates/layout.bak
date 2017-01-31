@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html><title>W3.CSS Template</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+<link rel="stylesheet" href="http://www.w3schools.com/lib/w3-theme-blue-grey.css">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
+</style>
+<body class="w3-theme-l5">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">ReefO'rumf</a>
+    </div>
+    <div class="w3-navbar w3-theme-d2 w3-left-align w3-large">
+
+    <ul class="nav navbar-nav">
+      <li class="w3-hide-medium w3-hide-large w3-opennav w3-right"><a href="{{url_for('homepage')}}">Home</a></li>
+      <li class="w3-hide-medium w3-hide-large w3-opennav w3-right"><a href="{{url_for('login')}}">Log In</a></li>
+      <li class="w3-hide-medium w3-hide-large w3-opennav w3-right"><a href="{{url_for('newUser')}}">Sign Up</a></li>
+      <li class="w3-hide-medium w3-hide-large w3-opennav w3-right"><a href="{{url_for('newThread')}}">New Thread</a></li>
+      <li class="w3-hide-medium w3-hide-large w3-opennav w3-right"><a href="{{url_for('threads')}}">Browse Threads</a></li>
+    </ul>
+  </div>
+</nav>
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='style.css')}}">
+
+
+<div class='container'>{% block body %}{% endblock %}</div>
+</html>
