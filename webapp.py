@@ -65,7 +65,7 @@ def homepage():
 
 @app.route('/newThread', methods = ['GET','POST'])
 def newThread():
-	 if request.method == 'POST':
+    if request.method == 'POST':
         thread_title = request.form['title']
         thread_content = request.form['thread_content']
         if thread_title is None or thread_content is None:
@@ -81,7 +81,7 @@ def newThread():
 
 @app.route('/threads')
 def threads():
-	threads=session.query(Thread).all().filter_by(Thread.timestamp)
+	threads=session.query(Thread).order_by(Thread.timestamp.desc()).all()
 	return render_template('threads.html', threads=threads)
 
 @app.route('/threadpage/<int:thread_id>')
