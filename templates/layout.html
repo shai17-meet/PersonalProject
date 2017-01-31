@@ -28,9 +28,28 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
       {% endif %}
       <li class=""><a href="{{url_for('newThread')}}">New Thread</a></li>
       <li class=""><a href="{{url_for('threads')}}">Browse Threads</a></li>
+       {% if 'id' in session %}
+       <li class="w3-right"><a href="{{url_for('logout')}}">Log Out</a></li>
+       {% endif %}
+
     </ul>
  </div>
 
 
 <div class='container'>{% block body %}{% endblock %}</div>
+
+<div class = 'flash'>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+
+        <ul>
+        {% for message in messages %}
+            <li> <strong> {{ message }} </strong> </li>
+        {% endfor %}
+        </ul>
+        {% endif %}
+    {% endwith %}
+
+</div>
+
 </html>

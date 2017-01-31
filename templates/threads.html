@@ -9,6 +9,7 @@
 <a href={{url_for('threadpage', thread_id=thread.id)}}>
 <p> {{thread.title}} </p>
 <p> {{thread.text}} </p> 
+<p> {{thread.user.name}} </p>
 <p> {{thread.timestamp}} </p><hr>
 
 {%endfor%}
