@@ -63,13 +63,25 @@ def newUser():
 def homepage():
 	return render_template('homepage.html')
 
-@app.route('/newThread')
+@app.route('/newThread', methods = ['GET','POST'])
 def newThread():
-	return render_template('newThread.html')
+	 if request.method == 'POST':
+        thread_title = request.form['title']
+        thread_content = request.form['thread_content']
+        if thread_title is None or thread_content is None:
+            flash("Your form is missing arguments")
+            return redirect(url_for('newThread'))
+        thread =Thread(title = thread_title, text= thread_content)
+        session.add(thread)
+        session.commit()
+        flash("Thread Added Successfully!")
+        return redirect(url_for('threads'))
+    else:
+		return render_template('newThread.html')
 
 @app.route('/threads')
 def threads():
-	threads=session.query(Thread).all()
+	threads=session.query(Thread).all().filter_by(Thread.timestamp)
 	return render_template('threads.html', threads=threads)
 
 @app.route('/threadpage/<int:thread_id>')
