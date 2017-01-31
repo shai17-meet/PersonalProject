@@ -9,6 +9,8 @@
 <a href={{url_for('threadpage', thread_id=thread.id)}}>
 <p> {{thread.title}} </p>
 <p> {{thread.text}} </p> <hr>
+<p> {{thread.datetime}} </p>
+
 {%endfor%}
 </div>
 {% endif %}
