@@ -2,11 +2,11 @@
 <html>
 
 <head>
-<title>SHai's Website</title>
+<title>Shai's Website</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
-<link rel="stylesheet" href="http://www.w3schools.com/lib/w3-theme-blue-grey.css">
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='w3.css')}}">
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='w3-theme-blue-grey.css')}}">
 <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -22,8 +22,10 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
 <div class = "w3 top">
     <ul class="w3-navbar w3-theme-d2 w3-left-align w3-large">
       <li class=""><a href="{{url_for('homepage')}}">Home</a></li>
+      {% if 'id' not in session %}
       <li class=""><a href="{{url_for('login')}}">Log In</a></li>
       <li class=""><a href="{{url_for('newUser')}}">Sign Up</a></li>
+      {% endif %}
       <li class=""><a href="{{url_for('newThread')}}">New Thread</a></li>
       <li class=""><a href="{{url_for('threads')}}">Browse Threads</a></li>
     </ul>
