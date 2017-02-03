@@ -7,10 +7,31 @@
 <div class="thread">
 {%for thread in threads %}
 <a href={{url_for('threadpage', thread_id=thread.id)}}>
-<p> {{thread.title}} </p>
-<p> {{thread.text}} </p> 
-<p> {{thread.user.name}} </p>
-<p> {{thread.timestamp}} </p><hr>
+
+
+ 
+
+
+
+
+
+</div>
+ <div class="w3-gray w3-hover-shadow w3-center">
+  <header>
+  <p>Original Poster: {{thread.user.name}}</p><hr>
+  <p><h2>{{thread.title}}</h2></p><hr>
+  </header>
+
+  <div class="w3-container">
+  <p>{{thread.text}}</p><hr>
+</div>
+<footer class="w3-gray w3-hover-shadow w3-center">
+  <h5>Posted at:  {{thread.timestamp}}</h5>
+</footer>
+
+</div>
+
+
 
 {%endfor%}
 </div>
