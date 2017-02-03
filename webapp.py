@@ -54,6 +54,9 @@ def newUser():
         session.add(user)
         session.commit()
         flash("User Created Successfully!")
+        login_session['name']=user.name
+        login_session['email']=user.email
+        login_session['id']=user.id
         return redirect(url_for('homepage'))
     else:
         return render_template('newUser.html')
