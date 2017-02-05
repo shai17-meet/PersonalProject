@@ -6,15 +6,10 @@
 {%else%}
 <div class="thread">
 {%for thread in threads %}
-<a href={{url_for('threadpage', thread_id=thread.id)}}>
+<a href='{{url_for("threadpage", thread_id=thread.id)}}', style="text-decoration:none">
 
 
  
-
-
-
-
-
 </div>
  <div class="w3-gray w3-hover-shadow w3-center">
   <header>
