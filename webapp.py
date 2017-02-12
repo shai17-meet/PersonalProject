@@ -33,7 +33,7 @@ def login():
 			login_session['name']=user.name
 			login_session['email']=user.email
 			login_session['id']=user.id
-			return redirect(url_for('homepage'))
+			return redirect(url_for('threads'))
 		else:
 			flash('Incorrect username/password combination')
 			return redirect(url_for('login'))
@@ -57,14 +57,19 @@ def newUser():
         login_session['name']=user.name
         login_session['email']=user.email
         login_session['id']=user.id
-        return redirect(url_for('homepage'))
+        return redirect(url_for('threads'))
     else:
         return render_template('newUser.html')
 
-
 @app.route('/')
-def homepage():
-	return render_template('homepage.html')
+def threads():
+	threads=session.query(Thread).order_by(Thread.timestamp.desc()).all()
+	return render_template('threads.html', threads=threads)
+
+
+#@app.route('/')
+#def homepage():
+#	return render_template('homepage.html')
 
 @app.route('/newThread', methods = ['GET','POST'])
 def newThread():
@@ -86,10 +91,6 @@ def newThread():
 		flash("You must log in to view this page")
 		return redirect(url_for('login'))
 
-@app.route('/threads')
-def threads():
-	threads=session.query(Thread).order_by(Thread.timestamp.desc()).all()
-	return render_template('threads.html', threads=threads)
 
 @app.route('/threadpage/<int:thread_id>')
 def threadpage(thread_id):
@@ -105,7 +106,7 @@ def logout():
 	del login_session['email']
 	del login_session['id']
 	flash("logged out successfully")
-	return redirect(url_for('homepage'))
+	return redirect(url_for('threads'))
 
 
 
