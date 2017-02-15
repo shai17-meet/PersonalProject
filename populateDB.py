@@ -5,10 +5,16 @@ Base.metadata.bind= engine
 DBSession = sessionmaker(bind=engine, autoflush=False)
 session = DBSession()
 
-allThreads = session.query(Thread).all()
-for thread in allThreads:
-	session.delete(thread)
+#allThreads = session.query(Thread).all()
+#for thread in allThreads:
+#	session.delete(thread)
+#session.commit()
+
+allComments = session.query(Comment).all()
+for comment in allComments:
+	session.delete(comment)
 session.commit()
+
 
 
 # newUser=User(name="Shai")

@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+{% block body %}
+<html>
+
+ {% if 'id' in session %}
+<form action='{{url_for("comments")}}' method='post'>
+Write Your Comment Here:<br>
+<input type="text" name="comment_text"><br>
+<input type="submit" value="post">
+{% endif %}
+
+{% if comments==[] %}
+<p>There are no current comments to display</p>
+{%else%}
+<div class="comment">
+{%for comment in comments %}
+
+
+
+ 
+</div>
+ <div class="w3-gray w3-hover-shadow">
+ 
+  <p>commenter: {{comment.user.name}}</p><hr>
+   <div class="w3-gray w3-hover-shadow w3-center">
+<p><h2>{{comment.text}}</h2></p><hr>
+  
+</div>
+  <div class="w3-container w3-gray">
+  <h5>Posted at:  {{comment.timestamp}}</h5>
+</div>
+
+</div>
+
+
+
+{%endfor%}
+</div>
+{% endif %}
+
+
+
+</html>
+{% endblock %}

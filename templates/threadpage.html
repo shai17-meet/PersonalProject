@@ -1,13 +1,144 @@
 {% extends "layout.html" %}
 {% block body %}
 <html>
-<h2>Thread Title:</h2>
-<p>{{thread.title}}</p><hr>
-<h3>Thread Content</h3>
-<p>{{thread.text}}</p>
-<h3> Leave A Comment!</h3><hr>
+
+
+<div class="w3-gray w3-hover-shadow">
+  <header>
+  <p>Original Poster: {{thread.user.name}}</p>
+   <div class="w3-dark-gray w3-hover-shadow w3-center">
+<p><h2>{{thread.title}}</h2></p><br>
+  </header>
+</div>
+  <div class="w3-container w3-gray">
+  <p>{{thread.text}}</p><hr>
+  <h5>Posted at:  {{thread.timestamp}}</h5>
+</div>
+</div>
+
+<h3>Leave a comment!</h3>
+<h5>(You must be logged in to leave a comment!)</h5><hr>
+
+ {% if 'id' in session %}
+<form action='{{url_for("threadpage", thread_id=thread.id)}}' method='post'>
+Write Your Comment Here:<br>
+<input type="text" name="comment_text"><br>
+<input type="submit" value="post"><hr>
+{% endif %}
+
+{% if comments==[] %}
+<p>There are no current comments to display</p>
+{%else%}
+<div class="comment">
+{%for comment in comments %}
+
+
+
+ 
+</div>
+<div class="w3-card-4 w3-yellow w3-hover-shadow"> 
+  <p>commenter: {{comment.user.name}}</p><hr>
+<p>{{comment.text}}</p><hr>
+ <p>Posted at:  {{comment.timestamp}}</p>
+</div>
+
+
+
+
+
+{%endfor%}
+</div>
+{% endif %}
 
 
 
 </html>
 {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+
+
+<html>
+
+  <div class="w3-gray w3-hover-shadow">
+  <header>
+  <p>Original Poster: {{thread.user.name}}</p>
+   <div class="w3-dark-gray w3-hover-shadow w3-center">
+<p><h2>{{thread.title}}</h2></p><br>
+  </header>
+</div>
+  <div class="w3-container w3-gray">
+  <p>{{thread.text}}</p><hr>
+  <h5>Posted at:  {{thread.timestamp}}</h5>
+</div>
+
+</div>
+<h3> Leave A Comment!</h3>
+
+{% if 'id' not in session %}
+ <h4>(You must be logged in to leave a comment!)</h4><hr>
+ {% endif %}
+<hr>
+
+{% if comments==[] %}
+<p>There are no current comments to display</p>
+{%else%}
+<div class="comment">
+{% for comment in comments %}
+
+</div>
+ <div class="w3-green w3-hover-shadow w3-center">
+  <header>
+  <p>Original Poster: {{comment.user.name}}</p><hr>
+  </header>
+
+  <div class="w3-green w3-hover-shadow w3-center">
+  <p>{{comment.text}}</p><hr>
+</div>
+  <h5>Posted at:  {{comment.timestamp}}</h5>
+
+</div>
+</header>
+</div>
+
+{%endfor%}
+</div>
+{% endif %}
+
+ {% if 'id' in session %}
+<form action='{{url_for("threadpage", thread_id=thread.id)}}' method='post'>
+Write Your Comment Here:<br>
+<input type="text" name="comment_text"><br>
+<input type="submit" value="post">
+{% endif %}
+
+
+</html>
+
+-->
+
+
+
+
+
+
+
+
+
+
+

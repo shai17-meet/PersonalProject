@@ -6,23 +6,22 @@
 {%else%}
 <div class="thread">
 {%for thread in threads %}
-<a href='{{url_for("threadpage", thread_id=thread.id)}}', style="text-decoration:none">
+<a href='{{url_for("threadpage", thread_id=thread.id)}}' style="text-decoration:none">
 
 
  
 </div>
- <div class="w3-gray w3-hover-shadow w3-center">
+ <div class="w3-gray w3-hover-shadow">
   <header>
-  <p>Original Poster: {{thread.user.name}}</p><hr>
-  <p><h2>{{thread.title}}</h2></p><hr>
+  <p>Original Poster: {{thread.user.name}}</p>
+   <div class="w3-dark-gray w3-hover-shadow w3-center">
+<p><h2>{{thread.title}}</h2></p><br>
   </header>
-
-  <div class="w3-container">
-  <p>{{thread.text}}</p><hr>
 </div>
-<footer class="w3-gray w3-hover-shadow w3-center">
+  <div class="w3-container w3-gray">
+  <p>{{thread.text}}</p><hr>
   <h5>Posted at:  {{thread.timestamp}}</h5>
-</footer>
+</div>
 
 </div>
 

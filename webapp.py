@@ -66,6 +66,20 @@ def threads():
 	threads=session.query(Thread).order_by(Thread.timestamp.desc()).all()
 	return render_template('threads.html', threads=threads)
 
+@app.route('/comments', methods = ['GET','POST'])
+def comments():
+	comments=session.query(Comment).order_by(Comment.timestamp.desc()).all()
+	if request.method=='POST':
+		comment_text=request.form['comment_text']
+		comment =Comment(text= comment_text, user_id=login_session['id'])
+		session.add(comment)
+		session.commit()
+		return redirect(url_for('comments'))
+	else:	
+		return render_template('comments.html', comments=comments)
+
+
+
 
 #@app.route('/')
 #def homepage():
@@ -92,10 +106,19 @@ def newThread():
 		return redirect(url_for('login'))
 
 
-@app.route('/threadpage/<int:thread_id>')
+@app.route('/threadpage/<int:thread_id>', methods = ['GET','POST'])
 def threadpage(thread_id):
 	thread= session.query(Thread).filter_by(id=thread_id).one()
-	return render_template('threadpage.html', thread=thread)
+	comments=session.query(Comment).order_by(Comment.timestamp.desc()).all()
+	if request.method=='POST':
+		comment_text=request.form['comment_text']
+		comment =Comment(text= comment_text, user_id=login_session['id'])
+		session.add(comment)
+		session.commit()
+		return redirect(url_for('threadpage', thread_id=thread.id))
+	else:	
+		return render_template('threadpage.html', comments=comments, thread=thread)
+
 
 @app.route('/logout')
 def logout():
