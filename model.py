@@ -44,7 +44,6 @@ class Comment(Base):
     user=relationship("User", back_populates="comments")
     thread=relationship("Thread", back_populates="comments")
 
-
 engine = create_engine('sqlite:///forum.db')
 Base.metadata.create_all(engine)
 Base.metadata.bind= engine
