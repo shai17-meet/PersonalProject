@@ -109,7 +109,7 @@ def newThread():
 @app.route('/threadpage/<int:thread_id>', methods = ['GET','POST'])
 def threadpage(thread_id):
 	thread= session.query(Thread).filter_by(id=thread_id).one()
-	comments=session.query(Comment).filter_by(id=Comment.thread_id).order_by(Comment.timestamp.desc()).all()
+	comments=session.query(Comment).filter_by(thread_id=thread.id).order_by(Comment.timestamp.desc()).all()
 	if request.method=='POST':
 		comment_text=request.form['comment_text']
 		comment =Comment(text= comment_text, user_id=login_session['id'], thread_id=thread.id)
